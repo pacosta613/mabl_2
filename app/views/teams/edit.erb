@@ -1,0 +1,7 @@
+<h1>Edit <%= @teams.name %></h1>
+  
+  <form action="/teams/<%= @teams.id %>" method="post">
+    <label>Change team name</label>
+    <input type="text" name="team">
+    <input type="submit" value="Edit">
+  </form>

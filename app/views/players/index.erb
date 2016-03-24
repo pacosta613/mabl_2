@@ -1,0 +1,22 @@
+<h1>Roster:</h1>
+
+  <form action="/players" method="post">
+    <ul>
+      <% @players.each do |player| %>
+      <label>
+        <li><%= player.name %><br>
+        <%= player.position %> <%= player.jersey_number %>
+      </label>
+
+      <label>
+        <a href="/players/<%= player.id %>/edit">Edit</a></li>
+      </label>
+      <br>
+    <% end %>
+    </ul>
+  </form>
+
+<h1>Add new Player</h1>
+  <form>
+    <a href="/players/new">Add New Player</a>
+  </form>

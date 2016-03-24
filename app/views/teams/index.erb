@@ -1,0 +1,19 @@
+<h1>Teams</h1>
+<form action="/teams" method="post">
+  <ul>
+  <% @teams.each do |team| %>
+    <label>
+    <li><a href="/players"><%= team.name %></a>
+    </label>
+  
+    <label>
+    <a href="/teams/<%= team.id %>/edit">Edit</a></li></label>
+    <br>
+  <% end %>
+  </ul>
+</form>
+
+<h1>Create a new team:</h1>
+<form>
+  <a href="/teams/new">Add Team</a>
+</form>

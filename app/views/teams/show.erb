@@ -1,0 +1,14 @@
+<h2><%= @teams.name %>/Players</h2>
+  <ul>
+  <% @teams.players.each do |player| %>
+    <li><%= player.name %></a></li>
+  <% end%>
+  </ul>
+
+    <h3>Add Players</h3>
+    <form action="/teams" method="post">
+      <input type="text" name="team"> <br>
+      <input type="submit" value="Create">
+    </form><br>
+
+  <a href="/teams">Home</a><br>

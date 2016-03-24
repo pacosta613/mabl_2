@@ -1,0 +1,11 @@
+<h1>Edit <%= @players.name %></h1>
+  
+  <form action="/players/<%= @players.id %>" method="post">
+    <label>Change player name</label>
+    <input type="text" name="name" id="name">
+    <label>Change position</label>
+    <input type="text" name="position" id="position">
+    <label>Change jersey number</label>
+    <input type="tel" name="jersey_number" id="jersey_number">
+    <input type="submit" value="Edit">
+  </form>

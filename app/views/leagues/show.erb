@@ -1,0 +1,16 @@
+<h2>League:</h2>
+  <%= @leagues.name %>
+<h3>Teams:</h3>
+  <ul>
+  <% @leagues.teams.each do |team| %>
+    <li><%= team.name %></a></li>
+  <% end%>
+  </ul>
+
+  <h2>Add teams</h2>
+    <form action="/teams" method="post" >
+      <input type="text" name="name"> <br>
+      <input type="submit" value="Create">
+    </form><br>
+
+<a href="/leagues">Home</a><br>
