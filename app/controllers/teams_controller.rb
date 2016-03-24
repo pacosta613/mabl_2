@@ -31,7 +31,6 @@ class TeamsController < ApplicationController
 
   post '/teams' do 
     @team = Team.new
-    @team.league_id = League.find_by(name: params[:league])
     @team.name = params[:name]
     @team.save
 

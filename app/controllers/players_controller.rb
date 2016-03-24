@@ -1,3 +1,4 @@
+require 'pry'
 class PlayersController < ApplicationController
 
   get '/players' do
@@ -11,7 +12,9 @@ class PlayersController < ApplicationController
 
   get '/players/:id' do 
     @players = Player.find_by_id(params[:id])
+    @players.save
     erb :'/players/show'
+    binding.pry
   end
 
   get '/players/:id/edit' do 
@@ -22,6 +25,8 @@ class PlayersController < ApplicationController
 
   post '/players/:id' do 
     @players = Player.find_by_id(params[:id])
+    @teams = Team.find_by(params[:team_id])
+    @players.team = Team.find_by(params[:team_id])
     @players.name = params[:name]
     @players.position = params[:position]
     @players.jersey_number = params[:jersey_number]
@@ -33,6 +38,8 @@ class PlayersController < ApplicationController
   post '/players' do 
     @players = Player.new
 
+    @teams = Team.find_by(params[:team_id])
+    @players.team = Team.find_by(params[:team_id])
     @players.name = params[:name]
     @players.position = params[:position]
     @players.jersey_number = params[:jersey_number]
