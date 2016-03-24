@@ -11,11 +11,12 @@ class TeamsController < ApplicationController
 
   get '/teams/:id' do 
     @teams = Team.find_by_id(params[:id])
+    
     erb :'teams/show'
   end
 
   get '/teams/:id/edit' do 
-    @teams = Team.find(params[:id])
+    @teams = Team.find_by_id(params[:id])
     @teams.save
     erb :'teams/edit'
   end
@@ -25,7 +26,7 @@ class TeamsController < ApplicationController
     @teams.name = params[:name]
     @teams.save
 
-    redirect "/teams/#{@team.id}"
+    redirect "/teams/#{@teams.id}"
   end
 
   post '/teams' do 
@@ -34,11 +35,11 @@ class TeamsController < ApplicationController
     @team.name = params[:name]
     @team.save
 
-    redirect "/teams/#{@team.id}"
+    redirect "/teams/#{@teams.id}"
   end
 
   get '/teams/:id/delete' do
-    team = Team.find(params[:id]).delete
+    league = Team.find(params[:id]).delete
     redirect '/teams'
   end
 

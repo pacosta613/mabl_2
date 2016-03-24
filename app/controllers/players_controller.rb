@@ -21,7 +21,7 @@ class PlayersController < ApplicationController
   end
 
   post '/players/:id' do 
-    @players = Player.find(params[:id])
+    @players = Player.find_by_id(params[:id])
     @players.name = params[:name]
     @players.position = params[:position]
     @players.jersey_number = params[:jersey_number]
@@ -32,12 +32,18 @@ class PlayersController < ApplicationController
 
   post '/players' do 
     @players = Player.new
+
     @players.name = params[:name]
     @players.position = params[:position]
     @players.jersey_number = params[:jersey_number]
     @players.save
 
     redirect "/players/#{@players.id}"
+  end
+
+  get '/players/:id/delete' do
+    league = Player.find(params[:id]).delete
+    redirect '/players'
   end
 
 end

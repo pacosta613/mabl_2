@@ -23,7 +23,6 @@ class LeaguesController < ApplicationController
   post '/leagues/:id' do 
     @leagues = League.find_by_id(params[:id])
     @leagues.name = params[:name]
-    @leagues.team = Team.find_by(name: params[:teams])
     @leagues.save
 
     redirect "/leagues/#{@leagues.id}"
@@ -31,7 +30,6 @@ class LeaguesController < ApplicationController
 
   post '/leagues' do 
     @leagues = League.new
-    @leagues.team = Team.find_by(name: params[:teams])
     @leagues.name = params[:name]
     @leagues.save
 
