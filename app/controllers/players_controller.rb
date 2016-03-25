@@ -12,9 +12,10 @@ class PlayersController < ApplicationController
 
   get '/players/:id' do 
     @players = Player.find_by_id(params[:id])
+
     @players.save
     erb :'/players/show'
-    binding.pry
+    #binding.pry
   end
 
   get '/players/:id/edit' do 
@@ -24,13 +25,13 @@ class PlayersController < ApplicationController
   end
 
   post '/players/:id' do 
-    @players = Player.find_by_id(params[:id])
+    @player = Player.find_by_id(params[:id])
     @teams = Team.find_by(params[:team_id])
-    @players.team = Team.find_by(params[:team_id])
-    @players.name = params[:name]
-    @players.position = params[:position]
-    @players.jersey_number = params[:jersey_number]
-    @players.save 
+    @player.team = Team.find_by(params[:team_id])
+    @player.name = params[:name]
+    @player.position = params[:position]
+    @player.jersey_number = params[:jersey_number]
+    @player.save 
 
     redirect "/players/#{@players.id}"
   end
@@ -44,8 +45,9 @@ class PlayersController < ApplicationController
     @players.position = params[:position]
     @players.jersey_number = params[:jersey_number]
     @players.save
-
+    binding.pry
     redirect "/players/#{@players.id}"
+
   end
 
   get '/players/:id/delete' do
