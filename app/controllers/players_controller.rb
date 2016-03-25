@@ -28,7 +28,7 @@ class PlayersController < ApplicationController
 
   post '/players/:id' do 
     @player = Player.find_by_id(params[:id])
-    @teams = Team.find_by(params[:team_id])
+    @team = Team.find_by(params[:team_id])
     @player.team = Team.find_by(params[:team_id])
     @player.name = params[:name]
     @player.position = params[:position]
@@ -40,7 +40,7 @@ class PlayersController < ApplicationController
 
   post '/players' do 
     @player = Player.new
-    @player.team = Team.find_by(params[:team_id])
+    @player.team = Team.find_by_id(params[:team_id])
     @player.name = params[:name]
     @player.position = params[:position]
     @player.jersey_number = params[:jersey_number]

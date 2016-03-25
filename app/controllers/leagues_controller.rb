@@ -10,34 +10,43 @@ class LeaguesController < ApplicationController
   end
 
   get '/leagues/:id' do 
-    @leagues = League.find_by_id(params[:id])
+    @league = League.find_by_id(params[:id])
     erb :'leagues/show'
   end
 
   get '/leagues/:id/edit' do 
-    @leagues = League.find_by_id(params[:id])
-    @leagues.save
+    @league = League.find_by_id(params[:id])
+    @league.save
     erb :'leagues/edit'
   end
 
   post '/leagues/:id' do 
-    @leagues = League.find_by_id(params[:id])
-    @leagues.name = params[:name]
-    @leagues.save
+    @league = League.find_by_id(params[:id])
+    @league.name = params[:name]
+    @league.save
 
-    redirect "/leagues/#{@leagues.id}"
+    redirect "/leagues/#{@league.id}"
   end
 
   post '/leagues' do 
-    @leagues = League.new
-    @leagues.name = params[:name]
-    @leagues.save
+    @league = League.new
+    @league.name = params[:name]
+    @league.save
 
-    redirect "/leagues/#{@leagues.id}"
+    redirect "/leagues/#{@league.id}"
+  end
+
+  post '/teams' do 
+    @team = Team.new
+    @team.league = League.find_by_id(params[:league_id])
+    @team.name = params[:name]
+    @team.save
+
+    redirect "/teams/#{@team.id}"
   end
 
   get '/leagues/:id/delete' do
-    league = League.find(params[:id]).delete
+    @league = League.find(params[:id]).delete
     redirect '/leagues'
   end
 

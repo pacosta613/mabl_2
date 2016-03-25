@@ -23,6 +23,8 @@ class TeamsController < ApplicationController
 
   post '/teams/:id' do 
     @team = Team.find_by_id(params[:id])
+    @league = League.find_by_id(params[:league_id])
+    @team.league = League.find_by_id(params[:league_id])
     @team.name = params[:name]
     @team.save
 
@@ -31,6 +33,7 @@ class TeamsController < ApplicationController
 
   post '/teams' do 
     @team = Team.new
+    @team.league = League.find_by_id(params[:league_id])
     @team.name = params[:name]
     @team.save
 
@@ -39,7 +42,7 @@ class TeamsController < ApplicationController
 
   post '/players' do 
     @player = Player.new
-    @player.team = Team.find_by(params[:team_id])
+    @player.team = Team.find_by_id(params[:team_id])
     @player.name = params[:name]
     @player.position = params[:position]
     @player.jersey_number = params[:jersey_number]

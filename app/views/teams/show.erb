@@ -2,23 +2,23 @@
 <h3>Roster:</h3>
   <ul>
   <% @team.players.each do |player| %>
-    <li><%= player.name %></a></li>
+    <li><%= player.name %>
+    <%= player.position %> <%= player.jersey_number %></a></li>
   <% end%>
   </ul>
 
     <h3>Add Players</h3>
   <form action="/players" method="post">
-    
+
   <label>Player Name:</label>
   <input type="text" name="name">
   <label>Position:</label>
   <input type="text" name="position">
   <label>Jersey Number:</label>
   <input type="tel" name="jersey_number"><br>
-  
 
   <form action="/players" method="post">
-    <input type="text" name="team"> <br>
+  <input type="hidden" name="team_id" value=<%=@team.id %>>
     <input type="submit" value="Create">
   </form><br>
 
