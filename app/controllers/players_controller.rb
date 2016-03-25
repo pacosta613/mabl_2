@@ -6,7 +6,9 @@ class PlayersController < ApplicationController
     erb :'players/index'
   end
 
-  get '/players/new' do 
+  get '/players/new' do
+    @team = Team.find_by(params[:team_id])
+     
     erb :'/players/new'
   end
 
@@ -38,8 +40,6 @@ class PlayersController < ApplicationController
 
   post '/players' do 
     @player = Player.new
-
-    @teams = Team.find_by(params[:team_id])
     @player.team = Team.find_by(params[:team_id])
     @player.name = params[:name]
     @player.position = params[:position]

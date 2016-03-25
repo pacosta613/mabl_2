@@ -37,6 +37,18 @@ class TeamsController < ApplicationController
     redirect "/teams/#{@team.id}"
   end
 
+  post '/players' do 
+    @player = Player.new
+    @player.team = Team.find_by(params[:team_id])
+    @player.name = params[:name]
+    @player.position = params[:position]
+    @player.jersey_number = params[:jersey_number]
+    @player.save
+    #binding.pry
+    redirect "/players/#{@player.id}"
+
+  end
+
   get '/teams/:id/delete' do
     league = Team.find(params[:id]).delete
     redirect '/teams'
