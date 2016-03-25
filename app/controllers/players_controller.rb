@@ -11,16 +11,16 @@ class PlayersController < ApplicationController
   end
 
   get '/players/:id' do 
-    @players = Player.find_by_id(params[:id])
+    @player = Player.find_by_id(params[:id])
 
-    @players.save
+    @player.save
     erb :'/players/show'
     #binding.pry
   end
 
   get '/players/:id/edit' do 
-    @players = Player.find_by_id(params[:id])
-    @players.save
+    @player = Player.find_by_id(params[:id])
+    @player.save
     erb :'players/edit'
   end
 
@@ -33,20 +33,20 @@ class PlayersController < ApplicationController
     @player.jersey_number = params[:jersey_number]
     @player.save 
 
-    redirect "/players/#{@players.id}"
+    redirect "/players/#{@player.id}"
   end
 
   post '/players' do 
-    @players = Player.new
+    @player = Player.new
 
     @teams = Team.find_by(params[:team_id])
-    @players.team = Team.find_by(params[:team_id])
-    @players.name = params[:name]
-    @players.position = params[:position]
-    @players.jersey_number = params[:jersey_number]
-    @players.save
-    binding.pry
-    redirect "/players/#{@players.id}"
+    @player.team = Team.find_by(params[:team_id])
+    @player.name = params[:name]
+    @player.position = params[:position]
+    @player.jersey_number = params[:jersey_number]
+    @player.save
+    #binding.pry
+    redirect "/players/#{@player.id}"
 
   end
 

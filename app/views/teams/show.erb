@@ -1,21 +1,21 @@
-<h2><%= @teams.name %></h2>
+<h2><%= @team.name %></h2>
 <h3>Roster:</h3>
   <ul>
-  <% @teams.players.each do |player| %>
+  <% @team.players.each do |player| %>
     <li><%= player.name %></a></li>
   <% end%>
   </ul>
 
     <h3>Add Players</h3>
   <form action="/players" method="post">
-    <% 10.times do %> 
+    
   <label>Player Name:</label>
   <input type="text" name="name">
   <label>Position:</label>
   <input type="text" name="position">
   <label>Jersey Number:</label>
   <input type="tel" name="jersey_number"><br>
-  <% end %>
+  
 
   <form action="/players" method="post">
     <input type="text" name="team"> <br>
